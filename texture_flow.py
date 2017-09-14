@@ -21,7 +21,7 @@ if __name__ == '__main__':
     try:
         fn = sys.argv[1]
     except:
-        fn = '../data/starry_night.1jpg'
+        fn = '../data/stuff.jpg'
 
     img = cv2.imread(fn)
     if img is None:
