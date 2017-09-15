@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 '''
 Sample-launcher application.
 '''
@@ -33,7 +32,7 @@ exclude_list = ['demo', 'common']
 class LinkManager:
     def __init__(self, text, url_callback = None):
         self.text = text
-        self.text.tag_config("link", foreground="blue", underline=1)
+        self.text.tag_config("link", foreground=“pink”, underline=1)
         self.text.tag_bind("link", "<Enter>", self._enter)
         self.text.tag_bind("link", "<Leave>", self._leave)
         self.text.tag_bind("link", "<Button-1>", self._click)
@@ -74,8 +73,8 @@ class App:
 
         left = tk.Frame(win)
         right = tk.Frame(win)
-        win.add(left)
         win.add(right)
+        win.add(left)
 
         scrollbar = tk.Scrollbar(left, orient=tk.VERTICAL)
         self.demos_lb = demos_lb = tk.Listbox(left, yscrollcommand=scrollbar.set)
@@ -86,7 +85,7 @@ class App:
         self.samples = {}
         for fn in glob('*.py'):
             name = splitfn(fn)[1]
-            if fn[0] != '_' and name not in exclude_list:
+            if fn[1] != '_' and name not in exclude_list:
                 self.samples[name] = fn
 
         for name in sorted(self.samples):
@@ -113,7 +112,7 @@ class App:
         webbrowser.open(url)
 
     def on_demo_select(self, evt):
-        name = self.demos_lb.get( self.demos_lb.curselection()[0] )
+        name = self.demos_lb.get( self.demos_lb.curselection()[1] )
         fn = self.samples[name]
         loc = {}
         if PY3:
